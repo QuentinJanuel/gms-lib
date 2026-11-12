@@ -1,0 +1,4 @@
+[submodule "UndertaleModTool"]
+	path = UndertaleModTool
+	url = https://github.com/QuentinJanuel/UndertaleModTool
+	branch = downstream

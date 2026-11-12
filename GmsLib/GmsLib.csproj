@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- The GameMaker Studio patch and decompile library: install mod resources into a data.win, and
+       read a game's code. Depends on UndertaleModLib and nothing of any emulator's. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Except NuGet's audit, which reports on UndertaleModLib's own dependencies (Magick.NET),
+         not on anything this library can change. Still shown, just not fatal. -->
+    <WarningsNotAsErrors>NU1901;NU1902;NU1903;NU1904</WarningsNotAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UndertaleModTool\UndertaleModLib\UndertaleModLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The decompiler's knowledge of GameMaker's own functions (which argument is an object, a
+         colour, a key), read by GameCode.cs. UndertaleModLib looks for it on disk next to the app,
+         which a browser or a library host need not have, so it is embedded. -->
+    <EmbeddedResource Include="..\UndertaleModTool\UndertaleModLib\GameSpecificData\Underanalyzer\gamemaker.json" LogicalName="GmsLib.gamemaker.json" />
+  </ItemGroup>
+
+</Project>

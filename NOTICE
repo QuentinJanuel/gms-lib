@@ -1,0 +1,47 @@
+gms-lib
+=======
+
+Reads, patches and writes GameMaker Studio game files (data.win, bytecode
+versions 14 to 16).
+
+Copyright (C) 2026 Dapper Mink, licensed GPL-3.0-only; see LICENSE.
+
+Depends on, through the UndertaleModTool submodule (not copied into this
+repository):
+
+- UndertaleModLib <https://github.com/UnderminersTeam/UndertaleModTool>:
+  GPL-3.0. This library is therefore GPL-3.0. Upstream states "GPLv3" without
+  an explicit "or later", so this repository takes the conservative reading,
+  GPL-3.0-only -- safe under either reading of upstream's intent. The submodule
+  points at the fork <https://github.com/QuentinJanuel/UndertaleModTool>,
+  under the same licence.
+- Underanalyzer <https://github.com/UnderminersTeam/Underanalyzer>: MPL-2.0.
+  UndertaleModTool's own submodule, pointing at the fork
+  <https://github.com/QuentinJanuel/Underanalyzer>, whose modified files stay
+  available there under MPL-2.0.
+
+.editorconfig is taken from OpenGM <https://github.com/misternebula/OpenGM>,
+MIT License:
+
+  Copyright (c) 2024-2025 _nebula, JohnCorby, TaiAurori
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+
+GPL-3.0 is incompatible with GPL-2.0-only: this library cannot be linked into a
+work that also contains GPL-2.0-only code.

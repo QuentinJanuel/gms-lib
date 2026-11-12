@@ -1,0 +1,12 @@
+{
+  "name": "gms-lib",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "export PATH=\"$HOME/.dotnet:$PATH\" && rm -rf GmsLib.Wasm/bin/Release/net10.0/publish && dotnet publish GmsLib.Wasm/GmsLib.Wasm.csproj -c Release && rm -rf dist && mkdir -p dist && cp -r GmsLib.Wasm/bin/Release/net10.0/publish/wwwroot/. dist/",
+    "format": "export PATH=\"$HOME/.dotnet:$PATH\" && dotnet restore GmsLib.Wasm/GmsLib.Wasm.csproj -p:NuGetAudit=false && dotnet format whitespace GmsLib.Wasm/GmsLib.Wasm.csproj --no-restore && dotnet format style GmsLib.Wasm/GmsLib.Wasm.csproj --no-restore",
+    "format:check": "export PATH=\"$HOME/.dotnet:$PATH\" && dotnet restore GmsLib.Wasm/GmsLib.Wasm.csproj -p:NuGetAudit=false && dotnet format whitespace GmsLib.Wasm/GmsLib.Wasm.csproj --no-restore --verify-no-changes && dotnet format style GmsLib.Wasm/GmsLib.Wasm.csproj --no-restore --verify-no-changes",
+    "test": "export PATH=\"$HOME/.dotnet:$PATH\" && dotnet test GmsLib.Tests/GmsLib.Tests.csproj -p:NuGetAudit=false"
+  }
+}

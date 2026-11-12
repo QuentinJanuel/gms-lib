@@ -1,0 +1,30 @@
+name: Pull request
+
+# Checks every pull request: the tests, then the AOT wasm build. Nothing is published from here.
+on: pull_request
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pull-request-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      # Installed under the runner's temp directory, which the runner user owns, so the workload
+      # install below needs no sudo.
+      - uses: actions/setup-dotnet@v4
+        env:
+          DOTNET_INSTALL_DIR: ${{ runner.temp }}/dotnet
+        with:
+          dotnet-version: "10.0.x"
+      # GmsLib.Wasm's AOT publish needs the Emscripten toolchain this workload brings.
+      - run: dotnet workload install wasm-tools
+      - run: dotnet test GmsLib.Tests/GmsLib.Tests.csproj -p:NuGetAudit=false
+      - run: dotnet publish GmsLib.Wasm/GmsLib.Wasm.csproj -c Release

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+
+  <!-- GmsLib for JavaScript: a .NET wasm runtime exporting the patcher and the code reader, loaded
+       by a browser or under Node. No game is ever run in it, so nothing here needs a canvas. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- [JSExport]'s generated marshalling is unsafe code. -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- This project only ever targets browser-wasm, which is the one platform JSExport needs. -->
+    <NoWarn>CA1416</NoWarn>
+    <!-- AOT-compiled, whatever it costs in publish time and payload: under the IL interpreter a
+         patch and a code read ran about 2.5x slower than OpenGM's AOT runtime on the same game.
+         Requires the wasm-tools workload. -->
+    <RunAOTCompilation>true</RunAOTCompilation>
+    <WasmEnableSIMD>true</WasmEnableSIMD>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- UndertaleModLib discovers its readers by reflection, which the trimmer cannot see. -->
+    <TrimmerRootAssembly Include="UndertaleModLib" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GmsLib\GmsLib.csproj" />
+  </ItemGroup>
+
+</Project>
